@@ -21,10 +21,42 @@ Plug 'flrnprz/plastic.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'fielding/vice'
 Plug 'henrik/vim-indexed-search'
-Plug 'terryma/vim-multiple-cursors'
-" Plug 'scrooloose/syntastic'
 Plug 'mattn/emmet-vim'
 Plug 'wakatime/vim-wakatime'
+
+" Syntax Check
+Plug 'vim-syntastic/syntastic'
+
+" Unpaired
+Plug 'tpope/vim-unimpaired'
+
+" One dark theme
+Plug 'joshdick/onedark.vim'
+
+" Best plugin ever
+Plug 'tpope/vim-surround'
+
+" Every one should have a pair (Autogenerate pairs for "{[( )
+Plug 'jiangmiao/auto-pairs'
+
+" Navigation tree
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" CoolIcons
+Plug 'ryanoasis/vim-devicons'
+
+" Ruby
+Plug 'vim-ruby/vim-ruby'
+Plug 'ngmy/vim-rubocop'
+
+" Plug 'thoughtbot/vim-rspec'
+Plug 'janko-m/vim-test'
+
+" Run code with ,r
+Plug 'xianzhon/vim-code-runner'
+
+" Vim end-wise
+Plug 'tpope/vim-endwise'
 
 call plug#end()
 
