@@ -6,7 +6,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
 Plug 'godlygeek/tabular'
 Plug 'zerowidth/vim-copy-as-rtf'
-Plug 'terryma/vim-multiple-cursors'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-rails'
 Plug 'flrnprz/candid.vim'
@@ -21,8 +20,22 @@ Plug 'flrnprz/plastic.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'fielding/vice'
 Plug 'henrik/vim-indexed-search'
-Plug 'mattn/emmet-vim'
-Plug 'wakatime/vim-wakatime'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'mattn/emmet-vim'
+
+" Time of work
+" Plug 'wakatime/vim-wakatime'
+
+
+"Call me
+Plug 'morhetz/gruvbox'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'junegunn/fzf', { 'do': -> { fzf#install() } }
+
+nmap <Leader>gd <Plug>(coc-definition)
+nmap <Leader>gr <Plug>(coc-references)
+nnoremap <C-p> :GFiles<CR>
+
 
 " Syntax Check
 Plug 'vim-syntastic/syntastic'
@@ -42,12 +55,9 @@ Plug 'jiangmiao/auto-pairs'
 " Navigation tree
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" CoolIcons
-Plug 'ryanoasis/vim-devicons'
-
 " Ruby
 Plug 'vim-ruby/vim-ruby'
-Plug 'ngmy/vim-rubocop'
+" Plug 'ngmy/vim-rubocop'
 
 " Plug 'thoughtbot/vim-rspec'
 Plug 'janko-m/vim-test'
@@ -75,7 +85,7 @@ if filereadable(expand("$HOME/.vim/plugged/oceanic-next/colors/OceanicNext.vim")
   let g:oceanic_next_terminal_bold = 1
   let g:oceanic_next_terminal_italic = 1
 
-  colorscheme OceanicNext
+  colorscheme onedark
 
   " set background=dark
   " syntax on
@@ -174,6 +184,8 @@ nmap <D-[> gT
 nmap <D-]> gt
 nmap <D-0> :tablast<CR>
 
+nmap sop :tabnew $MYVIMRC<cr>
+
 " Nohl
 nmap <c-h> :nohl<cr>
 
@@ -181,7 +193,7 @@ function! GithubCopyLineUrl()
   let line1 = a:firstline
   let line2 = a:lastline
   let commit = substitute(system('git rev-parse HEAD'), '[\]\|[[:cntrl:]]', '', 'g')
-  let cmd = 'git ls-remote --get-url | sed "s/:/\//g" | sed "s/git@/https:\/\//g" | sed "s/\.git/\/blob\//g"'
+  let cmd = 'git ls-remote --get-url | sed "s/:/\//g" | sed "s/git@/https:\/\//g" | sed "s/\.git/\/blame\//g"'
   let result = substitute(system(cmd), '[\]\|[[:cntrl:]]', '', 'g')
 
   if line1 != line2
@@ -197,7 +209,8 @@ nmap <Leader>cs :let @*=expand("%")<CR>
 nmap <Leader>cl :let @*=expand("%:p")<CR>
 nmap <Leader>cr :let @*=('rspec ' . expand("%") . ':' . line("."))<CR>
 nmap <Leader>cg :call GithubCopyLineUrl()<CR>
-vnoremap <Leader>cg :call GithubCopyLineUrl()<CR>
+nmap <Leader>cg :call GithubCopyLineUrl()<CR>
+nmap <leader>/ :Commentary<cr>
 
 " Alias to save and quit
 command WQ wq
@@ -225,7 +238,7 @@ if executable('fzf')
   let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 
   " <C-p>to search files
-  nnoremap <silent> <C-p> :FZF -m<cr>
+  " nnoremap <silent> <C-p> :FZF -m<cr>
 
   " <M-p> for open buffers
   nnoremap <silent> <M-p> :Buffers<cr>
@@ -297,6 +310,8 @@ let g:lightline = {
       \ },
       \ }
 
+" Vim tabs
+"
 for i in [1, 2, 3, 4, 5, 6, 7]
   execute 'nnoremap ,'.i.' '.i.'gt'
 endfor
@@ -311,3 +326,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
